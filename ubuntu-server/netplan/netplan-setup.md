@@ -1,6 +1,6 @@
 # ⚙️ Netplan Setup
 
-This folder contains Netplan configuration files used on my Ubuntu Server laptop.
+This directory contains Netplan configuration files used on my Ubuntu Server laptop.
 
 The laptop runs Ubuntu Server and uses a **Broadcom BCM43142** wireless chipset, which is very difficult to get working on Linux. These configuration files allow network connectivity via USB tethering or Wi-Fi (once the Broadcom drivers are installed).
 

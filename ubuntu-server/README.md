@@ -4,7 +4,7 @@ I installed **Ubuntu Server 24.04.2 LTS (64-bit)** on an old laptop I had lying 
 
 ---
 
-## 💻 Laptop specs
+## 📋 Laptop specs
 
 - **Model**: Asus X555LAB (released in 2015)
 - **CPU**: Intel Core i3-5010U (dual-core, 2.00GHz)
