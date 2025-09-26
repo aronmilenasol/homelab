@@ -1,0 +1,5 @@
+localstack-docker.pp
+localstack
+localstack-docker.te
+backups
+volume
