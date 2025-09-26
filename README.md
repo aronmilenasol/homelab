@@ -4,11 +4,23 @@ This repository contains my personal homelab setup: it's a collection of project
 
 Each folder documents a real setup: from system configurations and network setup to service automation and monitoring tools. Everything is tested on physical hardware or virtualized environments.
 
-## :hammer: Technologies used:
+## :hammer: Technologies used in each project:
 
-- Ubuntu Server
-- Docker
-- Prometheus
-- Grafana
-- Node Exporter
-- Netplan
+### Ubuntu Server
+
+- **Ubuntu Server**
+- **Docker**
+- **Prometheus**
+- **Grafana**
+- **Node Exporter**
+- **Netplan**
+
+### MediaStorage
+
+- **LocalStack**
+- **Docker**
+- **Python**
+- **Bash**
+- **Prometheus**
+- **Grafana**
+- **Makefile** 
