@@ -54,7 +54,7 @@ jobs:
 
     - name: Configure S3
       run: |
-        bash media-storage/scripts/configure-aws.sh
+        bash media-storage/scripts/configure-s3.sh
 
     - name: Test backup
       run: |
