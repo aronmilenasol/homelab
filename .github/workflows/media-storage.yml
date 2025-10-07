@@ -1,0 +1,64 @@
+name: MediaStorage CI
+
+on:
+  push:
+    branches:
+      - main
+      - 'feature/**'
+    paths:
+      - 'media-storage/**'
+      - '.github/workflows/media-storage.yml'
+  pull_request:
+    branches:
+      - main
+      - 'feature/**'
+    paths:
+      - 'media-storage/**'
+      - '.github/workflows/media-storage.yml'
+
+jobs:
+  test-media-storage:
+    runs-on: ubuntu-latest
+    services:
+      docker:
+        image: docker:20.10.24
+        options: --privileged
+        ports:
+          - 4566:4566
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.13"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install boto3
+
+    - name: Build and run LocalStack
+      run: |
+        docker pull localstack/localstack
+        docker run -d --name localstack-main -p 4566:4566 -e SERVICES=s3 localstack/localstack
+
+    - name: Wait for LocalStack to be ready
+      run: |
+        for i in {1..10}; do
+          curl -s http://localhost:4566/_localstack/health | grep "\"s3\": \"running\"" && break
+          echo "Waiting for LocalStack..."
+          sleep 3
+        done
+
+    - name: Configure S3
+      run: |
+        bash media-storage/scripts/configure-aws.sh
+
+    - name: Test backup
+      run: |
+        python media-storage/scripts/backup_s3.py
+
+    - name: Stop LocalStack
+      run: docker stop localstack-main && docker rm localstack-main
