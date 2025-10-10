@@ -54,10 +54,12 @@ jobs:
           echo "AWS_DEFAULT_REGION=us-east-1" >> $GITHUB_ENV
 
       - name: Configure S3 bucket in LocalStack
+        working-directory: media-storage
         run: |
           bash media-storage/scripts/configure-s3.sh
 
       - name: Run backup test
+        working-directory: media-storage
         run: |
           python media-storage/scripts/backup_s3.py
 
